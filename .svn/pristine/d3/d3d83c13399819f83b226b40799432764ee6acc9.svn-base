@@ -1,0 +1,91 @@
+package com.yuanye.njdt.ui.fragment;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.millet.androidlib.UI.CustomView.TitleBar;
+import com.millet.androidlib.UI.InterfaceUi.TitleBarClickListener;
+import com.millet.androidlib.Utils.ToastUtils;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.dao.ExampleDao;
+import com.yuanye.njdt.data.entity.ExampleEntity;
+import com.yuanye.njdt.presenter.engine.ExampleFragmentEngine;
+import com.yuanye.njdt.presenter.enginedelegate.ExampleFragmentEngineDelegate;
+import com.yuanye.njdt.ui.adapter.ExampleListAdapter;
+import com.yuanye.njdt.ui.baseui.BaseModuleFragment;
+
+import java.util.List;
+
+import butterknife.BindView;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class ExampleFragment extends BaseModuleFragment implements TitleBarClickListener, ExampleFragmentEngineDelegate {
+
+    @BindView(R.id.titleBar)
+    TitleBar mTitleBar;
+    @BindView(R.id.example_pull_list_view)
+    PullToRefreshListView mExamplePullListView;
+
+    private ExampleFragmentEngine mExampleFragmentEngine;
+    private ExampleListAdapter mExampleListAdapter;
+    private List<ExampleEntity> mExampleEntities;
+
+    @Override
+    protected int getViewId() {
+        return R.layout.fragment_example_mian;
+    }
+
+    @Override
+    protected void initData(ViewGroup container, Bundle savedInstanceState) {
+        mExampleFragmentEngine = new ExampleFragmentEngine(getActivity(), this);
+    }
+
+    @Override
+    protected void initViews(ViewGroup container, Bundle savedInstanceState, View _view) {
+        mTitleBar.setTitleBar(getString(R.string.exampleFragment_title), 0, R.mipmap.nav_btn_search, this);
+        mExamplePullListView.setMode(PullToRefreshBase.Mode.DISABLED);
+        mExampleListAdapter = new ExampleListAdapter(getActivity());
+        mExamplePullListView.setAdapter(mExampleListAdapter);
+    }
+
+    @Override
+    protected void loadData(ViewGroup container, Bundle savedInstanceState) {
+        mExampleEntities = ExampleDao.queryAll();
+        if (null == mExampleEntities || 0 == mExampleEntities.size()) {
+            if (null != mExampleFragmentEngine) {
+                mExampleFragmentEngine.getExampleList();
+            }
+        } else {
+            mExampleListAdapter.setData(mExampleEntities);
+        }
+    }
+
+    @Override
+    public void leftOnClick() {
+
+    }
+
+    @Override
+    public void rightOnClick() {
+
+    }
+
+    @Override
+    public void exampleListOnSuccess(List<ExampleEntity> _exampleEntityList) {
+        if (null != _exampleEntityList) {
+            mExampleListAdapter.setData(_exampleEntityList);
+        }
+    }
+
+    @Override
+    public void exampleListOnError(String _string) {
+        ToastUtils.showToast(getActivity(), _string, 0);
+    }
+
+}

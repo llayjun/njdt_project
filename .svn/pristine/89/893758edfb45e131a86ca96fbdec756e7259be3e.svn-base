@@ -1,0 +1,43 @@
+package com.millet.androidlib.Base;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+
+/**
+ * Created by Administrator on 2017/1/12.
+ */
+
+public abstract class BaseActivity extends Activity {
+
+    private Handler mUIHandler;
+
+    protected String TAG = this.getClass().getSimpleName();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initData(savedInstanceState);
+        initView(savedInstanceState);
+        loadData(savedInstanceState);
+    }
+
+    protected abstract void initData(Bundle savedInstanceState);
+
+    protected abstract void initView(Bundle savedInstanceState);
+
+    protected abstract void loadData(Bundle savedInstanceState);
+
+    /**
+     * 获取UI线程中的Handler
+     *
+     * @return
+     */
+    public Handler getUIHandler() {
+        if (null == mUIHandler) {
+            mUIHandler = new Handler(getMainLooper());
+        }
+        return mUIHandler;
+    }
+
+}

@@ -1,0 +1,23 @@
+package com.yuanye.njdt.constants;
+
+import com.millet.androidlib.Utils.LogUtils;
+import com.millet.androidlib.Utils.SDCardUtils;
+
+/**
+ * Created by Administrator on 2017/9/12 0012.
+ */
+
+public class AppUtils {
+
+    public static String getFilePath() {
+        try {
+            String fileName = "down/";
+            String filePath = SDCardUtils.createSubDir(fileName).getAbsolutePath();
+            return filePath;
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+            return null;
+        }
+    }
+
+}

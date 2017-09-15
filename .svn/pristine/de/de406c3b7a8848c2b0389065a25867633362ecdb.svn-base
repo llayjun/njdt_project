@@ -1,0 +1,14 @@
+package com.yuanye.njdt.presenter.enginedelegate;
+
+import com.millet.androidlib.EngineBase.EngineBaseDelegate;
+
+/**
+ * Created by Administrator on 2017/9/8 0008.
+ */
+
+public interface EmergencyFragmentEngineDelegate extends EngineBaseDelegate {
+
+    void EmergencyListOnSuccess(String _resultMessage);
+
+    void EmergencyListOnError(String _string);
+}

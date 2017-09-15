@@ -1,0 +1,52 @@
+package com.yuanye.njdt.constants;
+
+/**
+ * Created by Administrator on 2017/9/8 0008.
+ */
+
+public class ApiConfig {
+
+    public static final String IP = "http://112.124.96.207:18080";
+    public static final String URL = IP + "/appIndex/process/";
+    public static final String HEAD = "yuanyeActionName";
+
+    //登录
+    public static final String login_actionName = "login";
+
+    //修改密码
+    public static final String ediPass_actionName = "editPass";
+
+    //版本升级
+    public static final String app_version_update = "updateVersion";
+
+    //应急事件列表
+    public static final String eventList_actionName = "eventList";
+    public static final String emergency_sortDir = "desc";
+    public static final int emergency_status = 0;
+
+    //应急事件详情
+    public static final String eventListDetail_actionName = "eventDetail";
+
+    //历史事件
+    public static final String history_sortDir = "asc";
+    public static final int history_status = 50;
+
+    //内部资源
+    public static final String inside_resource = "internalResource";
+
+    //应急预案
+    public static final String yjya_actionName = "yjya";
+
+    //经典案例
+    public static final String jdal_actionName = "jdal";
+
+    //新增事件
+    public static final String add_event = "addEvent";
+
+    //地铁线路和站台
+    public static final String numberStation_actionName = "numberStation";
+
+    //errorcode为1000，表示成功
+    public static final int SuccessCode = 1000;
+
+}

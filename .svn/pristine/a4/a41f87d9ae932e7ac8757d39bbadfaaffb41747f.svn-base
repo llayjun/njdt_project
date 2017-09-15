@@ -1,0 +1,50 @@
+package com.yuanye.njdt.data.entity;
+
+import java.io.Serializable;
+
+/**
+ * Created by llay on 2017/9/10.
+ */
+
+public class PlanEntity implements Serializable {
+
+    private int id;
+
+    private String value;
+
+    private String label;
+
+    private String imageurl;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int _id) {
+        id = _id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String _value) {
+        value = _value;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String _label) {
+        label = _label;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String _imageurl) {
+        imageurl = _imageurl;
+    }
+}

@@ -1,0 +1,69 @@
+package com.yuanye.njdt.ui.adapter;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.millet.androidlib.Base.IBaseAdapter;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.data.entity.PlanEntity;
+
+
+/**
+ * Created by llay on 2017/9/9.
+ */
+
+public class PlanListAdapter extends IBaseAdapter implements View.OnClickListener {
+
+    public PlanListAdapter(Context mContext) {
+        super(mContext);
+    }
+
+    @Override
+    protected int getItemLayoutId() {
+        return R.layout.item_plan;
+    }
+
+    @Override
+    protected IBaseViewHolder getViewHolder(View _view) {
+        ViewHolder _viewHolder = new ViewHolder();
+        _viewHolder.mItemPlanLabel = _view.findViewById(R.id.item_plan_label);
+        _viewHolder.mItemPlanValue = _view.findViewById(R.id.item_plan_value);
+        _viewHolder.mItemPlanDownImage = _view.findViewById(R.id.item_plan_down_image);
+        _viewHolder.mItemPlanDownImage.setOnClickListener(this);
+        return _viewHolder;
+    }
+
+    @Override
+    protected void updateView(IBaseViewHolder _holder, int _position) {
+        ViewHolder _viewHolder = (ViewHolder) _holder;
+        PlanEntity _planEntity = (PlanEntity) getItem(_position);
+        if (null == _planEntity) return;
+        String _label = _planEntity.getLabel();
+        String _value = _planEntity.getValue();
+        if (!TextUtils.isEmpty(_label)) {
+            _viewHolder.mItemPlanLabel.setText(_label);
+        } else {
+            _viewHolder.mItemPlanLabel.setText("");
+        }
+        if (!TextUtils.isEmpty(_value)) {
+            _viewHolder.mItemPlanValue.setText(_value);
+        } else {
+            _viewHolder.mItemPlanValue.setText("");
+        }
+    }
+
+    public class ViewHolder implements IBaseViewHolder {
+        private TextView mItemPlanLabel;
+        private TextView mItemPlanValue;
+        private ImageView mItemPlanDownImage;
+    }
+
+    @Override
+    public void onClick(View _view) {
+
+    }
+
+}

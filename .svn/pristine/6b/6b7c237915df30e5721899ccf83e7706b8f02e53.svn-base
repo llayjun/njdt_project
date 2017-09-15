@@ -1,0 +1,84 @@
+package com.yuanye.njdt.ui.fragment;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.millet.androidlib.UI.CustomView.TitleBar;
+import com.millet.androidlib.UI.InterfaceUi.TitleBarClickListener;
+import com.millet.androidlib.Utils.ToastUtils;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.data.entity.PlanEntity;
+import com.yuanye.njdt.presenter.engine.PlanFragmentEngine;
+import com.yuanye.njdt.presenter.enginedelegate.PlanFragmentEngineDelegate;
+import com.yuanye.njdt.ui.adapter.PlanListAdapter;
+import com.yuanye.njdt.ui.baseui.BaseModuleFragment;
+
+import java.util.List;
+
+import butterknife.BindView;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class PlanFragment extends BaseModuleFragment implements TitleBarClickListener, PlanFragmentEngineDelegate {
+
+    @BindView(R.id.titleBar)
+    TitleBar mTitleBar;
+    @BindView(R.id.plan_pull_list_view)
+    PullToRefreshListView mPlanPullListView;
+
+    private PlanFragmentEngine mPlanFragmentEngine;
+    private PlanListAdapter mPlanListAdapter;
+
+    @Override
+    protected int getViewId() {
+        return R.layout.fragment_plan_mian;
+    }
+
+    @Override
+    protected void initData(ViewGroup container, Bundle savedInstanceState) {
+        mPlanFragmentEngine = new PlanFragmentEngine(getActivity(), this);
+    }
+
+    @Override
+    protected void initViews(ViewGroup container, Bundle savedInstanceState, View _view) {
+        mTitleBar.setTitleBar(getString(R.string.planFragment_title), 0, R.mipmap.nav_btn_search, this);
+        mPlanPullListView.setMode(PullToRefreshBase.Mode.DISABLED);
+        mPlanListAdapter = new PlanListAdapter(getActivity());
+        mPlanPullListView.setAdapter(mPlanListAdapter);
+    }
+
+    @Override
+    protected void loadData(ViewGroup container, Bundle savedInstanceState) {
+        if (null != mPlanFragmentEngine) {
+            mPlanFragmentEngine.getPlanList();
+        }
+    }
+
+    @Override
+    public void leftOnClick() {
+
+    }
+
+    @Override
+    public void rightOnClick() {
+
+    }
+
+    @Override
+    public void PlanListOnSuccess(List<PlanEntity> _planEntityList) {
+        if (null != _planEntityList) {
+            mPlanListAdapter.setData(_planEntityList);
+        }
+    }
+
+    @Override
+    public void PlanListOnError(String _string) {
+        ToastUtils.showToast(getActivity(), _string, 0);
+    }
+
+}

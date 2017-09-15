@@ -1,0 +1,258 @@
+package com.yuanye.njdt.ui.activity;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.millet.androidlib.Utils.DeviceUtils;
+import com.millet.androidlib.Utils.SharedPreferencesHelper;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.constants.AppUtils;
+import com.yuanye.njdt.constants.KeyConfig;
+import com.yuanye.njdt.data.entity.VersionEntity;
+import com.yuanye.njdt.presenter.engine.MainEngine;
+import com.yuanye.njdt.presenter.enginedelegate.MainEngineDelegate;
+import com.yuanye.njdt.ui.baseui.BaseModuleActivity;
+import com.yuanye.njdt.ui.fragment.EmergencyFragment;
+import com.yuanye.njdt.ui.fragment.ExampleFragment;
+import com.yuanye.njdt.ui.fragment.HistoryFragment;
+import com.yuanye.njdt.ui.fragment.PlanFragment;
+import com.yuanye.njdt.ui.service.AppUpdateService;
+
+import butterknife.BindView;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class MainActivity extends BaseModuleActivity implements View.OnClickListener, MainEngineDelegate {
+
+    public static void launch(Context _context) {
+        Intent _intent = new Intent(_context, MainActivity.class);
+        _context.startActivity(_intent);
+    }
+
+    @BindView(R.id.activity_content)
+    FrameLayout mActivityContent;
+    @BindView(R.id.emergency_image)
+    ImageView mEmergencyImage;
+    @BindView(R.id.emergency_text)
+    TextView mEmergencyText;
+    @BindView(R.id.emergency_layout)
+    RelativeLayout mEmergencyLayout;
+    @BindView(R.id.history_image)
+    ImageView mHistoryImage;
+    @BindView(R.id.history_text)
+    TextView mHistoryText;
+    @BindView(R.id.history_layout)
+    RelativeLayout mHistoryLayout;
+    @BindView(R.id.plan_image)
+    ImageView mPlanImage;
+    @BindView(R.id.plan_text)
+    TextView mPlanText;
+    @BindView(R.id.plan_layout)
+    RelativeLayout mPlanLayout;
+    @BindView(R.id.example_image)
+    ImageView mExampleImage;
+    @BindView(R.id.example_text)
+    TextView mExampleText;
+    @BindView(R.id.example_layout)
+    RelativeLayout mExampleLayout;
+
+    private EmergencyFragment mEmergencyFragment;
+    private ExampleFragment mExampleFragment;
+    private PlanFragment mPlanFragment;
+    private HistoryFragment mHistoryFragment;
+
+    private FragmentManager fragmentManager;
+
+    //engine
+    private MainEngine mMainEngine;
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        mMainEngine = new MainEngine(this, this);
+//        mMainEngine.getVersionInfo();
+        boolean _isExistStationInfo = (boolean) SharedPreferencesHelper.getInstance(this).get(KeyConfig.EXIST_SHARE_KEY_STATION_INFO, false);
+        if (!_isExistStationInfo) {
+            mMainEngine.getStationNum();
+        }
+    }
+
+    @Override
+    protected int getViewId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initViews(Bundle savedInstanceState) {
+        fragmentManager = getFragmentManager();
+        setTabSelection(0);
+        mEmergencyLayout.setOnClickListener(this);
+        mHistoryLayout.setOnClickListener(this);
+        mPlanLayout.setOnClickListener(this);
+        mExampleLayout.setOnClickListener(this);
+    }
+
+    @Override
+    protected void loadData(Bundle savedInstanceState) {
+    }
+
+    @Override
+    public void getVersionInfoOnSuccess(VersionEntity _versionEntity) {
+        if (null == _versionEntity) return;
+        String _versionCode = DeviceUtils.getAppVersionCode(this);
+        int _serverCode = _versionEntity.getVersionCode();
+        if (Integer.parseInt(_versionCode) < _serverCode) {
+            String _serverContent = _versionEntity.getDescribe();
+            final String _url = _versionEntity.getDownloadUrl();
+            if (TextUtils.isEmpty(_url)) return;
+            new MaterialDialog.Builder(this)
+                    .content(_serverContent)
+                    .positiveText("确定")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            AppUpdateService.launchUpdateService(MainActivity.this, _url);
+                        }
+                    }).show();
+        }
+    }
+
+    @Override
+    public void getVersionInfoOnError(String _string) {
+
+    }
+
+    @Override
+    public void getStationOnSuccess(String _string) {
+        if (TextUtils.isEmpty(_string))
+            return;
+        AppUtils.getJsonStation(_string);
+    }
+
+    @Override
+    public void getStationOnError(String _string) {
+
+    }
+
+    @Override
+    public void onClick(View _view) {
+        int _id = _view.getId();
+        switch (_id) {
+            case R.id.emergency_layout:
+                setTabSelection(0);
+                break;
+            case R.id.history_layout:
+                setTabSelection(1);
+                break;
+            case R.id.plan_layout:
+                setTabSelection(2);
+                break;
+            case R.id.example_layout:
+                setTabSelection(3);
+                break;
+        }
+    }
+
+    /**
+     * 选择选中的第几个
+     *
+     * @param _index
+     */
+    private void setTabSelection(int _index) {
+        clearSelection();
+        // 开启一个Fragment事务
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+        hideFragments(transaction);
+        switch (_index) {
+            case 0:
+                mEmergencyImage.setImageResource(R.mipmap.tab_btn_1_sel);
+                mEmergencyText.setTextColor(getResources().getColor(R.color.color_1c86ea));
+                if (mEmergencyFragment == null) {
+                    mEmergencyFragment = new EmergencyFragment();
+                    transaction.add(R.id.activity_content, mEmergencyFragment);
+                } else {
+                    transaction.show(mEmergencyFragment);
+                }
+                break;
+            case 1:
+                mHistoryImage.setImageResource(R.mipmap.tab_btn_2_sel);
+                mHistoryText.setTextColor(getResources().getColor(R.color.color_1c86ea));
+                if (mHistoryFragment == null) {
+                    mHistoryFragment = new HistoryFragment();
+                    transaction.add(R.id.activity_content, mHistoryFragment);
+                } else {
+                    transaction.show(mHistoryFragment);
+                }
+                break;
+            case 2:
+                mPlanImage.setImageResource(R.mipmap.tab_btn_4_sel);
+                mPlanText.setTextColor(getResources().getColor(R.color.color_1c86ea));
+                if (mPlanFragment == null) {
+                    mPlanFragment = new PlanFragment();
+                    transaction.add(R.id.activity_content, mPlanFragment);
+                } else {
+                    transaction.show(mPlanFragment);
+                }
+                break;
+            case 3:
+                mExampleImage.setImageResource(R.mipmap.tab_btn_5_sel);
+                mExampleText.setTextColor(getResources().getColor(R.color.color_1c86ea));
+                if (mExampleFragment == null) {
+                    mExampleFragment = new ExampleFragment();
+                    transaction.add(R.id.activity_content, mExampleFragment);
+                } else {
+                    transaction.show(mExampleFragment);
+                }
+                break;
+        }
+        transaction.commit();
+    }
+
+    /**
+     * 清除上次选中的状态
+     */
+    private void clearSelection() {
+        mEmergencyImage.setImageResource(R.mipmap.tab_btn_1_nor);
+        mEmergencyText.setTextColor(getResources().getColor(R.color.color_a6b0bd));
+        mHistoryImage.setImageResource(R.mipmap.tab_btn_2_nor);
+        mHistoryText.setTextColor(getResources().getColor(R.color.color_a6b0bd));
+        mPlanImage.setImageResource(R.mipmap.tab_btn_4_nor);
+        mPlanText.setTextColor(getResources().getColor(R.color.color_a6b0bd));
+        mExampleImage.setImageResource(R.mipmap.tab_btn_5_nor);
+        mExampleText.setTextColor(getResources().getColor(R.color.color_a6b0bd));
+    }
+
+    /**
+     * 将所有的Fragment都置为隐藏状态。
+     *
+     * @param transaction 用于对Fragment执行操作的事务
+     */
+    private void hideFragments(FragmentTransaction transaction) {
+        if (mEmergencyFragment != null) {
+            transaction.hide(mEmergencyFragment);
+        }
+        if (mHistoryFragment != null) {
+            transaction.hide(mHistoryFragment);
+        }
+        if (mPlanFragment != null) {
+            transaction.hide(mPlanFragment);
+        }
+        if (mExampleFragment != null) {
+            transaction.hide(mExampleFragment);
+        }
+    }
+}

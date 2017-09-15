@@ -1,0 +1,52 @@
+package com.yuanye.njdt.ui.fragment;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.millet.androidlib.UI.CustomView.TitleBar;
+import com.millet.androidlib.UI.InterfaceUi.TitleBarClickListener;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.ui.baseui.BaseModuleFragment;
+
+import butterknife.BindView;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class HistoryFragment extends BaseModuleFragment implements TitleBarClickListener {
+
+    @BindView(R.id.titleBar)
+    TitleBar mTitleBar;
+
+    @Override
+    protected int getViewId() {
+        return R.layout.fragment_history_mian;
+    }
+
+    @Override
+    protected void initData(ViewGroup container, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initViews(ViewGroup container, Bundle savedInstanceState, View _view) {
+        mTitleBar.setTitleBar(getString(R.string.historyFragment_title),0,R.mipmap.nav_btn_search,this);
+    }
+
+    @Override
+    protected void loadData(ViewGroup container, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void leftOnClick() {
+
+    }
+
+    @Override
+    public void rightOnClick() {
+
+    }
+}

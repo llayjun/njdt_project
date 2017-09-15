@@ -1,0 +1,75 @@
+package com.yuanye.njdt.ui.fragment;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.ui.activity.ChangePassActivity;
+import com.yuanye.njdt.ui.baseui.BaseModuleFragment;
+
+import butterknife.BindView;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class EmergencyFragment extends BaseModuleFragment implements View.OnClickListener {
+
+    @BindView(R.id.head_left_image)
+    ImageView mHeadLeftImage;
+    @BindView(R.id.header_htv_subtitle)
+    TextView mHeaderHtvSubtitle;
+    @BindView(R.id.header_title)
+    LinearLayout mHeaderTitle;
+    @BindView(R.id.head_right_image)
+    ImageView mHeadRightImage;
+    @BindView(R.id.head_first_right_image)
+    ImageView mHeadFirstRightImage;
+    @BindView(R.id.emergency_pull_list_view)
+    PullToRefreshListView mEmergencyPullListView;
+
+    @Override
+    protected int getViewId() {
+        return R.layout.fragment_emergency_mian;
+    }
+
+    @Override
+    protected void initData(ViewGroup container, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initViews(ViewGroup container, Bundle savedInstanceState, View _view) {
+        mHeadLeftImage.setImageResource(R.mipmap.nav_btn_password);
+        mHeadLeftImage.setOnClickListener(this);
+        mHeaderHtvSubtitle.setText(getString(R.string.emergencyFragment_title));
+        mHeadFirstRightImage.setImageResource(R.mipmap.nav_btn_edit);
+        mHeadFirstRightImage.setOnClickListener(this);
+        mHeadRightImage.setImageResource(R.mipmap.nav_btn_search);
+        mHeadRightImage.setOnClickListener(this);
+    }
+
+    @Override
+    protected void loadData(ViewGroup container, Bundle savedInstanceState) {
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        int _id = view.getId();
+        if (_id == R.id.head_left_image) {
+            ChangePassActivity.launch(getActivity());
+        } else if (_id == R.id.head_first_right_image) {
+
+        } else if (_id == R.id.head_right_image) {
+
+        }
+    }
+
+}

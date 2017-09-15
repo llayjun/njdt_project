@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.millet.androidlib.UI.CustomView.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <LinearLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/publish_event_item_relative_text_left"
+                android:text="标题"/>
+
+            <EditText
+                android:id="@+id/publish_event_title"
+                style="@style/publish_event_item_relative_text_right"
+                android:background="@null"
+                android:drawablePadding="5dp"
+                android:hint="输入应急事件标题"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/publish_event_content"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="输入应急事件详情内容"
+            android:padding="10dp"
+            android:textColor="@color/color_3e3a39"
+            android:textSize="15dp"/>
+
+        <View style="@style/div_line"/>
+
+        <LinearLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/publish_event_item_relative_text_left"
+                android:text="处理"/>
+
+            <TextView
+                android:id="@+id/publish_event_choose_plan"
+                style="@style/publish_event_item_relative_text_right"
+                android:drawablePadding="5dp"
+                android:drawableRight="@mipmap/icon_arr_down"/>
+
+        </LinearLayout>
+
+
+        <View style="@style/div_line"/>
+
+        <com.millet.androidlib.UI.CustomView.SquareImageView
+            android:id="@+id/plan_choose_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/publish_event_item_relative_text_left"
+                android:text="上传图片"/>
+
+            <LinearLayout
+                style="@style/publish_event_item_relative_text_right"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/plan_image_choose"
+                    android:layout_width="50dp"
+                    android:layout_gravity="right"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/icon_photo"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.millet.androidlib.UI.CustomView.MyGridView
+            android:id="@+id/image_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:padding="10dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp">
+
+        </com.millet.androidlib.UI.CustomView.MyGridView>
+
+    </LinearLayout>
+
+</ScrollView>

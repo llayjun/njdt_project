@@ -1,0 +1,45 @@
+package com.yuanye.njdt.constants;
+
+import android.text.TextUtils;
+
+import com.millet.androidlib.Utils.LogUtils;
+import com.millet.androidlib.Utils.SDCardUtils;
+
+/**
+ * Created by Administrator on 2017/9/12 0012.
+ */
+
+public class AppUtils {
+
+    /**
+     * 保存文件的路径地址
+     *
+     * @return
+     */
+    public static String getFilePath() {
+        try {
+            String fileName = "down/";
+            String filePath = SDCardUtils.createSubDir(fileName).getAbsolutePath();
+            return filePath;
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+            return null;
+        }
+    }
+
+    /**
+     * 截取最后一个字符串
+     *
+     * @param _str
+     * @return
+     */
+    public static String getLastString(String _str) {
+        if (TextUtils.isEmpty(_str))
+            return null;
+        String[] _split = _str.split("/");
+        if (0 == _split.length)
+            return _split[0];
+        return _split[_split.length - 1];
+    }
+
+}

@@ -1,0 +1,22 @@
+package com.yuanye.njdt.presenter.engine;
+
+
+import android.content.Context;
+
+import com.millet.androidlib.EngineBase.EngineBase;
+import com.yuanye.njdt.presenter.enginedelegate.EmergencyEngineDelegate;
+
+/**
+ * Created by Administrator on 2017/9/8 0008.
+ */
+
+public class EmergencyEngine<T extends EmergencyEngineDelegate> extends EngineBase<T> {
+
+    public EmergencyEngine(Context _context) {
+        super(_context);
+    }
+
+    public EmergencyEngine(Context _context, T _t) {
+        super(_context, _t);
+    }
+}

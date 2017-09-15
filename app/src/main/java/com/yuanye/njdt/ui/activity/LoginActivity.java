@@ -1,0 +1,84 @@
+package com.yuanye.njdt.ui.activity;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Window;
+import android.widget.Button;
+
+import com.millet.androidlib.UI.CustomView.LineEditText;
+import com.millet.androidlib.Utils.ToastUtils;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.data.entity.UserInfoEntity;
+import com.yuanye.njdt.presenter.engine.LoginEngine;
+import com.yuanye.njdt.presenter.enginedelegate.LoginEngineDelegate;
+import com.yuanye.njdt.ui.baseui.BaseModuleActivity;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class LoginActivity extends BaseModuleActivity implements LoginEngineDelegate {
+
+    @BindView(R.id.button_login)
+    Button mButtonLogin;
+    @BindView(R.id.user_name)
+    LineEditText mUserName;
+    @BindView(R.id.user_password)
+    LineEditText mUserPassword;
+
+    private LoginEngine mLoginEngine;
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        //无title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mLoginEngine = new LoginEngine(this, this);
+    }
+
+    @Override
+    protected int getViewId() {
+        return R.layout.activity_user_login;
+    }
+
+    @Override
+    protected void initViews(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void loadData(Bundle savedInstanceState) {
+
+    }
+
+    @OnClick(R.id.button_login)
+    public void onClick() {
+        hideSoftKeyboard();
+        String _userName = mUserName.getText().toString().trim();
+        String _passWord = mUserPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(_userName)) {
+            ToastUtils.showToast(this, getString(R.string.login_no_user_name), 0);
+            return;
+        }
+        if (TextUtils.isEmpty(_passWord)) {
+            ToastUtils.showToast(this, getString(R.string.login_no_pass_word), 0);
+            return;
+        }
+        if (null == mLoginEngine) return;
+        mLoginEngine.userLogin(_userName, _passWord);
+    }
+
+    @Override
+    public void loginOnSuccess(UserInfoEntity _userInfoEntity) {
+        MainActivity.launch(this);
+        finish();
+    }
+
+    @Override
+    public void loginOnError(String _string) {
+        ToastUtils.showToast(this, _string, 0);
+    }
+
+}

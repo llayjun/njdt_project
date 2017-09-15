@@ -1,0 +1,18 @@
+package com.yuanye.njdt.presenter.enginedelegate;
+
+import com.millet.androidlib.EngineBase.EngineBaseDelegate;
+import com.yuanye.njdt.data.entity.ExampleEntity;
+import com.yuanye.njdt.data.entity.PlanEntity;
+
+import java.util.List;
+
+/**
+ * Created by llay on 2017/9/10.
+ */
+
+public interface ExampleFragmentEngineDelegate extends EngineBaseDelegate {
+
+    void ExampleListOnSuccess(final List<ExampleEntity> _exampleEntityList);
+
+    void ExampleListOnError(String _string);
+}

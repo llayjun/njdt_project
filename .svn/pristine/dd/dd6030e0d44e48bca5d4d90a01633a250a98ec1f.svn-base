@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.millet.androidlib.UI.CustomView.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/edit_pass_warm"
+            android:textColor="#444444"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:id="@+id/linerlayout1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/textView1"
+            android:layout_marginTop="15dp"
+            android:background="#FFFFFF"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="11dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/old_pass"
+                android:textColor="#444444"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/old_pass_word"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:inputType="textPassword"
+                android:textColor="#444444"
+                android:textSize="16sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/linerlayout1"
+            android:background="#e0e0e0"/>
+
+        <LinearLayout
+            android:id="@+id/linerlayout2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/divider1"
+            android:background="#FFFFFF"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="11dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/new_pass"
+                android:textColor="#444444"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/new_pass_word"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:inputType="textPassword"
+                android:textColor="#444444"
+                android:textSize="16sp">
+
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/linerlayout2"
+            android:background="#e0e0e0"/>
+
+        <LinearLayout
+            android:id="@+id/linerlayout3"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/divider2"
+            android:background="#FFFFFF"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="11dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/verify_pass"
+                android:textColor="#444444"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/confirm_new_pass_word"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:inputType="textPassword"
+                android:textColor="#444444"
+                android:textSize="16sp">
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/linerlayout3"
+            android:background="#e0e0e0"/>
+
+        <Button
+            android:id="@+id/button_change_word"
+            android:layout_width="285dp"
+            android:layout_height="37dp"
+            android:layout_below="@id/divider3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_bt_bg_external"
+            android:text="@string/app_company_regi_phone_pwd"
+            android:textColor="@color/color_ffffff"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.millet.androidlib.UI.CustomView.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="时间"/>
+
+            <TextView
+                android:id="@+id/detail_time"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="2017-08-16"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="地点"/>
+
+            <TextView
+                android:id="@+id/detail_place"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="1号线 龙眠大道"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="紧急联系人"/>
+
+            <TextView
+                android:id="@+id/detail_urgency_name"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="维也纳"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="紧急联系手机"/>
+
+            <TextView
+                android:id="@+id/detail_urgency_phone"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="025-25457586"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="描述"/>
+
+            <TextView
+                android:id="@+id/detail_describe"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="迅速躲起来迅速躲起来"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="站点处理"/>
+
+            <TextView
+                android:id="@+id/detail_dispose"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="A B"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative"
+            android:layout_height="100dp">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="现场照片"/>
+
+            <ImageView
+                android:id="@+id/detail_image_show"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher"
+                tools:text="A B"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_ebeef4">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="步骤"
+                android:textColor="@color/color_70839b"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+        <WebView
+            android:id="@+id/detail_step_dir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</ScrollView>

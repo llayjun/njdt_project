@@ -1,0 +1,40 @@
+package com.yuanye.njdt.data.entity;
+
+import java.io.Serializable;
+
+/**
+ * Created by llay on 2017/9/10.
+ */
+
+public class ExampleEntity implements Serializable {
+
+    private String type;
+
+    private String label;
+
+    private String downloadUrl;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String _type) {
+        type = _type;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String _label) {
+        label = _label;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String _downloadUrl) {
+        downloadUrl = _downloadUrl;
+    }
+}

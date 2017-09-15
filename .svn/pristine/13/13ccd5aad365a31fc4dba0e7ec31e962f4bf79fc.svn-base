@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/emergency_detail_item_relative"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <TextView
+        android:id="@+id/item_group_left_text"
+        style="@style/emergency_detail_item_relative_text_left"
+        android:text="地点"/>
+
+    <TextView
+        android:id="@+id/item_group_right_text"
+        style="@style/emergency_detail_item_relative_text_right"
+        tools:text="1号线 龙眠大道"/>
+
+</RelativeLayout>

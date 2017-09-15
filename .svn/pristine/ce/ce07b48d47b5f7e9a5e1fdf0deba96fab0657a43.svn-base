@@ -1,0 +1,141 @@
+package com.yuanye.njdt.presenter.engine;
+
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.millet.androidlib.EngineBase.EngineBase;
+import com.millet.androidlib.Utils.GsonUtils;
+import com.millet.androidlib.Utils.LogUtils;
+import com.yuanye.njdt.constants.ApiConfig;
+import com.yuanye.njdt.data.entity.VersionEntity;
+import com.yuanye.njdt.presenter.enginedelegate.MainEngineDelegate;
+import com.yuanye.njdt.presenter.service.IReqResultCallBack;
+import com.yuanye.njdt.presenter.service.ServiceManager;
+
+/**
+ * Created by Administrator on 2017/9/11 0011.
+ */
+
+public class MainEngine<T extends MainEngineDelegate> extends EngineBase<T> {
+
+    public MainEngine(Context _context) {
+        super(_context);
+    }
+
+    public MainEngine(Context _context, T _t) {
+        super(_context, _t);
+    }
+
+    public void getVersionInfo() {
+        try {
+            ServiceManager.getInstance().getIMyService().reqServerWithNoParam(ApiConfig.app_version_update, new IReqResultCallBack() {
+                @Override
+                public void onResultSuccess(String _result, String _resultMessage) {
+                    if (TextUtils.isEmpty(_result)) {
+                        notifyGetListFailure("error");
+                    } else {
+                        VersionEntity _versionEntity = new VersionEntity();
+                        _versionEntity = GsonUtils.GsonToBean(_result, VersionEntity.class);
+                        notifyGetListSuccess(_versionEntity);
+                    }
+                }
+
+                @Override
+                public void onResultFailure(String _result) {
+                    notifyGetListFailure(_result);
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    public void notifyGetListSuccess(final VersionEntity _versionEntity) {
+        try {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    MainEngineDelegate _mainEngineDelegate = getDelegate();
+                    if (null != _mainEngineDelegate) {
+                        _mainEngineDelegate.getVersionInfoOnSuccess(_versionEntity);
+                    }
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    public void notifyGetListFailure(final String _string) {
+        try {
+            if (!TextUtils.isEmpty(_string)) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainEngineDelegate _mainEngineDelegate = getDelegate();
+                        if (null != _mainEngineDelegate) {
+                            _mainEngineDelegate.getVersionInfoOnError(_string);
+                        }
+                    }
+                });
+            }
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    public void getStationNum() {
+        try {
+            ServiceManager.getInstance().getIMyService().reqServerWithNoParam(ApiConfig.numberStation_actionName, new IReqResultCallBack() {
+                @Override
+                public void onResultSuccess(String _result, String _resultMessage) {
+                    if (TextUtils.isEmpty(_result)) {
+                        notifyGetStationFailure("error");
+                    } else {
+                        notifyGetStationSuccess(_result);
+                    }
+                }
+
+                @Override
+                public void onResultFailure(String _result) {
+                    notifyGetStationFailure(_result);
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    public void notifyGetStationSuccess(final String _string) {
+        try {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    MainEngineDelegate _mainEngineDelegate = getDelegate();
+                    if (null != _mainEngineDelegate) {
+                        _mainEngineDelegate.getStationOnSuccess(_string);
+                    }
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    public void notifyGetStationFailure(final String _string) {
+        try {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    MainEngineDelegate _mainEngineDelegate = getDelegate();
+                    if (null != _mainEngineDelegate) {
+                        _mainEngineDelegate.getStationOnError(_string);
+                    }
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+}

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My</string>
+
+    <!--EmergencyFragment string-->
+    <string name="emergencyFragment_title">应急事件</string>
+
+    <!--HistoryFragment string-->
+    <string name="historyFragment_title">历史事件</string>
+
+    <!--PlanFragment string-->
+    <string name="planFragment_title">应急预案</string>
+
+    <!--ExampleFragment string-->
+    <string name="exampleFragment_title">经典案例</string>
+
+</resources>

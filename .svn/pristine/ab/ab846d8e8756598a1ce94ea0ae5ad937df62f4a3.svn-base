@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My</string>
+
+    <!--LoginActivity string-->
+    <string name="login_no_user_name">用户名不能为空</string>
+    <string name="login_no_pass_word">密码不能为空</string>
+
+    <!--ChangePassActivity string-->
+    <string name="change_pass_no_old_pass">请输入旧密码</string>
+    <string name="change_pass_no_new_pass">请输入新密码</string>
+    <string name="change_pass_no_confirm_new_pass">请确认密码</string>
+    <string name="change_pass_error_confirm_new_pass">新密码不一致</string>
+
+    <!--EmergencyFragment string-->
+    <string name="emergencyFragment_title">应急事件</string>
+
+    <!--HistoryFragment string-->
+    <string name="historyFragment_title">历史事件</string>
+
+    <!--PlanFragment string-->
+    <string name="planFragment_title">应急预案</string>
+
+    <!--ExampleFragment string-->
+    <string name="exampleFragment_title">经典案例</string>
+
+</resources>

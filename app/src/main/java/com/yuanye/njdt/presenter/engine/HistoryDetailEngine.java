@@ -1,0 +1,258 @@
+package com.yuanye.njdt.presenter.engine;
+
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.millet.androidlib.EngineBase.EngineBase;
+import com.millet.androidlib.Utils.GsonUtils;
+import com.millet.androidlib.Utils.LogUtils;
+import com.millet.androidlib.Utils.SharedPreferencesHelper;
+import com.yuanye.njdt.MyApplication;
+import com.yuanye.njdt.constants.ApiConfig;
+import com.yuanye.njdt.constants.AppUtils;
+import com.yuanye.njdt.constants.KeyConfig;
+import com.yuanye.njdt.data.apidata.MaterialReq;
+import com.yuanye.njdt.data.entity.MaterialEntity;
+import com.yuanye.njdt.presenter.enginedelegate.HistoryDetailEngineDelegate;
+import com.yuanye.njdt.presenter.service.IReqResultCallBack;
+import com.yuanye.njdt.presenter.service.ServiceManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * Created by Administrator on 2017/9/13 0013.
+ */
+
+public class HistoryDetailEngine<T extends HistoryDetailEngineDelegate> extends EngineBase<T> {
+
+    private int mSum = 0;//总数
+    private int mIndex = 0;//第几个
+
+    private List<MaterialEntity> mMaterialEntitiesList = new ArrayList<>();
+
+    public HistoryDetailEngine(Context _context) {
+        super(_context);
+    }
+
+    public HistoryDetailEngine(Context _context, T _t) {
+        super(_context, _t);
+    }
+
+    public void getCailiaoInfo(String _stationName) {
+        try {
+            if (TextUtils.isEmpty(_stationName)) return;
+            MaterialReq _materialReq = new MaterialReq(_stationName);
+            ServiceManager.getInstance().getIMyService().reqServer(_materialReq, ApiConfig.inside_resource, new IReqResultCallBack() {
+                @Override
+                public void onResultSuccess(String _result, String _resultMessage) {
+                    if (TextUtils.isEmpty(_result)) {
+                        notifyGetMaterialFailure("error");
+                    } else {
+                        List<MaterialEntity> _listEntities = new ArrayList<>();
+                        _listEntities = GsonUtils.jsonToList(_result, MaterialEntity.class);
+                        notifyGetMaterialSuccess(_listEntities);
+                    }
+                }
+
+                @Override
+                public void onResultFailure(String _result) {
+                    notifyGetMaterialFailure(_result);
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    private void notifyGetMaterialSuccess(final List<MaterialEntity> _listEntities) {
+        try {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    HistoryDetailEngineDelegate _historyDetailEngineDelegate = getDelegate();
+                    if (null != _historyDetailEngineDelegate) {
+                        _historyDetailEngineDelegate.getCailiaoOnSuccess(_listEntities);
+                    }
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+    private void notifyGetMaterialFailure(final String _string) {
+        try {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    HistoryDetailEngineDelegate _historyDetailEngineDelegate = getDelegate();
+                    if (null != _historyDetailEngineDelegate) {
+                        _historyDetailEngineDelegate.getCailiaoOnError(_string);
+                    }
+                }
+            });
+        } catch (Exception _e) {
+            LogUtils.catchInfo(_e.toString());
+        }
+    }
+
+//    public void getCailiaoInfo(String _stationName) {
+//        try {
+//            if (TextUtils.isEmpty(_stationName)) return;
+//            MaterialReq _materialReq = new MaterialReq(_stationName);
+//            ServiceManager.getInstance().getIMyService().reqServer(_materialReq, ApiConfig.inside_resource, new IReqResultCallBack() {
+//                @Override
+//                public void onResultSuccess(String _result, String _resultMessage) {
+//                    notifyGetResult(_result, 0);
+//                }
+//
+//                @Override
+//                public void onResultFailure(String _result) {
+//                    notifyGetResult(_result, -1);
+//                }
+//            });
+//        } catch (Exception _e) {
+//            LogUtils.catchInfo(_e.toString());
+//        }
+//    }
+//
+//    private synchronized void notifyGetResult(String _result, int _code) {
+//        try {
+//            mIndex += 1;
+//            if (_code == 0) {
+//                if (!TextUtils.isEmpty(_result)) {
+//                    List<MaterialEntity> _listEntities = new ArrayList<>();
+//                    _listEntities = GsonUtils.jsonToList(_result, MaterialEntity.class);
+//                    mMaterialEntitiesList.addAll(_listEntities);
+//                    if (mIndex == mSum) {
+//                        notifyGetMaterialSuccess(mMaterialEntitiesList);
+//                    }
+//                }
+//            } else {
+//                if (mIndex == mSum) {
+//                    notifyGetMaterialSuccess(mMaterialEntitiesList);
+//                }
+//            }
+//        } catch (Exception _e) {
+//            LogUtils.catchInfo(_e.toString());
+//        }
+//    }
+//
+//    private void notifyGetMaterialSuccess(final List<MaterialEntity> _listEntities) {
+//        try {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    HistoryDetailEngineDelegate _historyDetailEngineDelegate = getDelegate();
+//                    if (null != _historyDetailEngineDelegate) {
+//                        _historyDetailEngineDelegate.getCailiaoOnSuccess(_listEntities);
+//                    }
+//                }
+//            });
+//        } catch (Exception _e) {
+//            LogUtils.catchInfo(_e.toString());
+//        }
+//    }
+//
+//    private void notifyGetMaterialFailure(final String _string) {
+//        try {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    HistoryDetailEngineDelegate _historyDetailEngineDelegate = getDelegate();
+//                    if (null != _historyDetailEngineDelegate) {
+//                        _historyDetailEngineDelegate.getCailiaoOnError(_string);
+//                    }
+//                }
+//            });
+//        } catch (Exception _e) {
+//            LogUtils.catchInfo(_e.toString());
+//        }
+//    }
+
+    /**
+     * 获取中间及其两边的站点名称集合
+     *
+     * @param _station
+     * @param _starStation
+     * @param _endStation
+     * @return
+     */
+    public List<String> getMiddleStation(String _station, String _starStation, String _endStation) {
+        if (TextUtils.isEmpty(_station) || TextUtils.isEmpty(_starStation) || TextUtils.isEmpty(_endStation))
+            return null;
+        String _key = "";
+        switch (_station) {
+            case KeyConfig.one_line:
+                _key = KeyConfig.SHARE_KEY_ONE_LINE;
+                break;
+            case KeyConfig.two_line:
+                _key = KeyConfig.SHARE_KEY_TWO_LINE;
+                break;
+            case KeyConfig.three_line:
+                _key = KeyConfig.SHARE_KEY_THREE_LINE;
+                break;
+            case KeyConfig.four_line:
+                _key = KeyConfig.SHARE_KEY_FOUR_LINE;
+                break;
+            case KeyConfig.ten_line:
+                _key = KeyConfig.SHARE_KEY_TEN_LINE;
+                break;
+            case KeyConfig.s_one_line:
+                _key = KeyConfig.SHARE_KEY_S_ONE_LINE;
+                break;
+            case KeyConfig.s_eight_line:
+                _key = KeyConfig.SHARE_KEY_S_EIGHT_LINE;
+                break;
+            default:
+                break;
+        }
+        Context _context = MyApplication.getInstance();
+        String _string = (String) SharedPreferencesHelper.getInstance(_context).get(_key, "");
+        if (TextUtils.isEmpty(_string)) return null;
+        String[] _strings = AppUtils.getStringArray(_string);
+        if (null == _strings) return null;
+        List<String> _listAllStation = Arrays.asList(_strings);
+        if (!_listAllStation.contains(_starStation) || !_listAllStation.contains(_endStation))
+            return null;
+        int _startIndex = _listAllStation.indexOf(_starStation);
+        int _endIndex = _listAllStation.indexOf(_endStation);
+        if (-1 == _startIndex || -1 == _endIndex) return null;
+        int _startFinalIndex = 0;
+        int _endFinalIndex = 0;
+        List<String> _stringList = new ArrayList<>();
+        if (_startIndex > _endIndex) return null;
+        if (_startIndex == _endIndex) {
+            _stringList.add(_starStation);
+            return _stringList;
+        }
+        if (0 == _startIndex) {
+            _startFinalIndex = _startIndex;
+        } else {
+            _startFinalIndex = _startIndex - 1;
+        }
+        if (_listAllStation.size() - 1 == _endIndex) {
+            _endFinalIndex = _endIndex;
+        } else {
+            _endFinalIndex = _endIndex + 1;
+        }
+        List<String> _finalList = new ArrayList<>();
+        _finalList.addAll(_listAllStation.subList(_startFinalIndex, _endFinalIndex));
+        if (0 == _finalList.size()) return null;
+        String _last = _listAllStation.get(_endFinalIndex);
+        if (!TextUtils.isEmpty(_last)) {
+            _finalList.add(_last);
+        }
+        return _finalList;
+    }
+
+    public int getSum() {
+        return mSum;
+    }
+
+    public void setSum(int _sum) {
+        mSum = _sum;
+    }
+}

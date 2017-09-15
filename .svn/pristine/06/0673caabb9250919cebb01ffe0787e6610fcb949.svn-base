@@ -1,0 +1,146 @@
+package com.yuanye.njdt.ui.activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.TextView;
+
+import com.millet.androidlib.UI.CustomView.TitleBar;
+import com.millet.androidlib.UI.InterfaceUi.TitleBarClickListener;
+import com.millet.androidlib.Utils.DateUtils;
+import com.yuanye.njdt.R;
+import com.yuanye.njdt.data.entity.EmergencyListEntity;
+import com.yuanye.njdt.ui.baseui.BaseModuleActivity;
+
+import butterknife.BindView;
+
+/**
+ * Created by llay on 2017/9/10.
+ */
+
+public class HistoryDetailActivity extends BaseModuleActivity implements TitleBarClickListener {
+
+    public static final String TAG = HistoryDetailActivity.class.getSimpleName();
+
+    public static final String HISTORY_DETAIL_KEY = "HISTORY_DETAIL_KEY";
+
+    @BindView(R.id.titleBar)
+    TitleBar mTitleBar;
+    @BindView(R.id.history_detail_contact_name)
+    TextView mHistoryDetailContactName;
+    @BindView(R.id.history_detail_contact_phone)
+    TextView mHistoryDetailContactPhone;
+    @BindView(R.id.history_detail_materials)
+    TextView mHistoryDetailMaterials;
+    @BindView(R.id.history_detail_store_place)
+    TextView mHistoryDetailStorePlace;
+    @BindView(R.id.history_detail_charger)
+    TextView mHistoryDetailCharger;
+    @BindView(R.id.history_detail_charger_phone)
+    TextView mHistoryDetailChargerPhone;
+    @BindView(R.id.history_detail_create_time)
+    TextView mHistoryDetailCreateTime;
+    @BindView(R.id.history_detail_create_name)
+    TextView mHistoryDetailCreateName;
+    @BindView(R.id.history_detail_update_time)
+    TextView mHistoryDetailUpdateTime;
+    @BindView(R.id.history_detail_web_view)
+    WebView mHistoryDetailWebView;
+
+    public static void launch(Context _context, EmergencyListEntity _emergencyListEntity) {
+        Intent _intent = new Intent(_context, HistoryDetailActivity.class);
+        _intent.putExtra(HISTORY_DETAIL_KEY, _emergencyListEntity);
+        _context.startActivity(_intent);
+    }
+
+    //data
+    private EmergencyListEntity mEmergencyListEntity;
+
+    @Override
+    protected int getViewId() {
+        return R.layout.activity_history_detail;
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        Intent _intent = getIntent();
+        if (null != _intent) {
+            mEmergencyListEntity = (EmergencyListEntity) _intent.getSerializableExtra(HISTORY_DETAIL_KEY);
+        }
+    }
+
+    @Override
+    protected void initViews(Bundle savedInstanceState) {
+        if (null == mEmergencyListEntity) return;
+        String _historyTitle = mEmergencyListEntity.getEmergencyTitle();
+        if (!TextUtils.isEmpty(_historyTitle)) {
+            mTitleBar.setTitleBar(_historyTitle, R.mipmap.nav_btn_back, 0, this);
+        } else {
+            mTitleBar.setTitleBar(getString(R.string.emergencyDetailFragment_title), R.mipmap.nav_btn_back, 0, this);
+        }
+    }
+
+    @Override
+    protected void loadData(Bundle savedInstanceState) {
+        String _contactName = mEmergencyListEntity.getContactName();
+        if (!TextUtils.isEmpty(_contactName)) {
+            mHistoryDetailContactName.setText(_contactName);
+        } else {
+            mHistoryDetailContactName.setText("");
+        }
+        String _contactPhone = mEmergencyListEntity.getContactMobile();
+        if (!TextUtils.isEmpty(_contactPhone)) {
+            mHistoryDetailContactPhone.setText(_contactPhone);
+        } else {
+            mHistoryDetailContactPhone.setText("");
+        }
+        long _createTime = mEmergencyListEntity.getCreateTime();
+        if (0 != _createTime) {
+            String _createData = DateUtils.formatYMDHMA(_createTime);
+            if (!TextUtils.isEmpty(_createData)) {
+                mHistoryDetailCreateTime.setText(_createData);
+            } else {
+                mHistoryDetailCreateTime.setText("");
+            }
+        } else {
+            mHistoryDetailCreateTime.setText("");
+        }
+        String _createName = mEmergencyListEntity.getUserName();
+        if (!TextUtils.isEmpty(_createName)) {
+            mHistoryDetailCreateName.setText("发起人：" + _contactName);
+        } else {
+            mHistoryDetailCreateName.setText("发起人：");
+        }
+        long _updateTime = mEmergencyListEntity.getCreateTime();
+        if (0 != _updateTime) {
+            String _updateData = DateUtils.formatYMDHMA(_createTime);
+            if (!TextUtils.isEmpty(_updateData)) {
+                mHistoryDetailUpdateTime.setText(_updateData);
+            } else {
+                mHistoryDetailUpdateTime.setText("");
+            }
+        } else {
+            mHistoryDetailUpdateTime.setText("");
+        }
+        String _stepStr = mEmergencyListEntity.getEventStepstr();
+        if (!TextUtils.isEmpty(_stepStr)) {
+            mHistoryDetailWebView.loadDataWithBaseURL("about:blank", _stepStr, "text/html", "utf-8", null);
+        } else {
+            mHistoryDetailWebView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void leftOnClick() {
+        finish();
+    }
+
+    @Override
+    public void rightOnClick() {
+
+    }
+
+}

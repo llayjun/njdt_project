@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.millet.androidlib.UI.CustomView.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative"
+            android:background="@color/color_ebeef4">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="事件处理流程"
+                android:textColor="@color/color_70839b"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+        <com.millet.androidlib.UI.CustomView.MyExpandableListView
+            android:id="@+id/history_expand_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:childIndicatorLeft="0dp"
+            android:childIndicatorRight="0dp"
+            android:groupIndicator="@null"/>
+
+        <View style="@style/div_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/history_detail_create_time"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/yellow_roll"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_9e9e9f"
+                android:textSize="15dp"
+                tools:text="2017-08-30 10:15:24"/>
+
+            <TextView
+                android:id="@+id/history_detail_create_name"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/color_70839b"
+                android:textSize="18dp"
+                tools:text="发起人：张三"/>
+
+        </LinearLayout>
+
+        <View style="@style/div_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/history_detail_update_time"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/red_roll"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_9e9e9f"
+                android:textSize="15dp"
+                tools:text="2017-08-30 10:15:24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:text="总调"
+                android:textColor="@color/color_ed3f35"
+                android:textSize="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp">
+
+            <WebView
+                android:id="@+id/history_detail_web_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:drawableLeft="@drawable/grey_roll"
+                android:drawablePadding="5dp"
+                android:text="已结案"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_ebeef4">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="内部资源"
+                android:textColor="@color/color_70839b"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+        <com.millet.androidlib.UI.CustomView.MyExpandableListView
+            android:id="@+id/history_expand_material_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:childIndicatorLeft="0dp"
+            android:childIndicatorRight="0dp"
+            android:groupIndicator="@null"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="材料"/>
+
+            <TextView
+                android:id="@+id/history_detail_materials"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="沙包"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="存放地点"/>
+
+            <TextView
+                android:id="@+id/history_detail_store_place"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="药瓶存放地点"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="责任人"/>
+
+            <TextView
+                android:id="@+id/history_detail_charger"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="张三"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+        <RelativeLayout
+            style="@style/emergency_detail_item_relative">
+
+            <TextView
+                style="@style/emergency_detail_item_relative_text_left"
+                android:text="联系电话"/>
+
+            <TextView
+                android:id="@+id/history_detail_charger_phone"
+                style="@style/emergency_detail_item_relative_text_right"
+                tools:text="12345678900"/>
+
+        </RelativeLayout>
+
+        <View style="@style/div_line"/>
+
+    </LinearLayout>
+</ScrollView>

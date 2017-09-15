@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.yuanye.njdt">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".ui.activity.LoginActivity">
+
+        </activity>
+
+        <activity android:name=".ui.activity.ChangePassActivity"/>
+
+        <activity android:name=".ui.activity.MainActivity">
+
+        </activity>
+
+        <!--应急事件界面-->
+        <activity android:name=".ui.activity.EmergencyDetailActivity"/>
+
+        <!--历史事件界面-->
+        <activity android:name=".ui.activity.HistoryDetailActivity"/>
+
+        <activity android:name=".ui.activity.PublishEventActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service android:name=".ui.service.AppUpdateService"/>
+
+    </application>
+
+</manifest>

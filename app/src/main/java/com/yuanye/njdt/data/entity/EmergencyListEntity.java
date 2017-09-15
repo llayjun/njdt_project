@@ -1,0 +1,280 @@
+package com.yuanye.njdt.data.entity;
+
+import java.io.Serializable;
+
+/**
+ * Created by llay on 2017/9/9.
+ */
+
+public class EmergencyListEntity implements Serializable {
+
+    private int id;
+
+    private long createTime; //事件创建时间
+
+    private long updateTime;//事件更新时间
+
+    private String emergencyTitle = "";//事件标题
+
+    private String emergencyContent = "";//事件内容
+
+    private String emergencyType = "";//事件类型
+
+    private String emergencyCircuitNumber = "";//事件地铁站线路
+
+    private String emergencyCircuitStation = "";//事件地铁站站点开始
+
+    private String emergencyCircuitStationEnd = "";//事件地铁站站点结束
+
+    private int emergencyStatus;//事件状态 0进行中 50结案
+
+    private String emergencyPic = "";//事件图片
+
+    private int userId;//发布用户编号
+
+    private String comment = "";//领导批注
+
+    private int reserve;//预留字段
+
+    private int eventStepId;
+
+    private String userName = "";//发布人用户名
+
+    private String emergencyUserName = "";
+
+    private String eventStepstr = "";// 步骤html
+
+    private String eventStepValue = "";// 步骤value
+
+    private String contactName = "";// 紧急联系人姓名
+
+    private String contactMobile = "";// 紧急联系人手机号码
+
+    private String grade = "";//事件处理评分
+
+    private int pageIndex;//分页参数
+
+    private int pageSize;
+
+    private String year;//数据统计模块-历史报表 年份
+
+    private String count;//数据统计模块-历史报表 事件发生的数量
+
+    private int createUserId;//创建者id
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int _id) {
+        id = _id;
+    }
+
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long _createTime) {
+        createTime = _createTime;
+    }
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long _updateTime) {
+        updateTime = _updateTime;
+    }
+
+    public String getEmergencyTitle() {
+        return emergencyTitle;
+    }
+
+    public void setEmergencyTitle(String _emergencyTitle) {
+        emergencyTitle = _emergencyTitle;
+    }
+
+    public String getEmergencyContent() {
+        return emergencyContent;
+    }
+
+    public void setEmergencyContent(String _emergencyContent) {
+        emergencyContent = _emergencyContent;
+    }
+
+    public String getEmergencyType() {
+        return emergencyType;
+    }
+
+    public void setEmergencyType(String _emergencyType) {
+        emergencyType = _emergencyType;
+    }
+
+    public String getEmergencyCircuitNumber() {
+        return emergencyCircuitNumber;
+    }
+
+    public void setEmergencyCircuitNumber(String _emergencyCircuitNumber) {
+        emergencyCircuitNumber = _emergencyCircuitNumber;
+    }
+
+    public String getEmergencyCircuitStation() {
+        return emergencyCircuitStation;
+    }
+
+    public void setEmergencyCircuitStation(String _emergencyCircuitStation) {
+        emergencyCircuitStation = _emergencyCircuitStation;
+    }
+
+    public int getEmergencyStatus() {
+        return emergencyStatus;
+    }
+
+    public void setEmergencyStatus(int _emergencyStatus) {
+        emergencyStatus = _emergencyStatus;
+    }
+
+    public String getEmergencyPic() {
+        return emergencyPic;
+    }
+
+    public void setEmergencyPic(String _emergencyPic) {
+        emergencyPic = _emergencyPic;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int _userId) {
+        userId = _userId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String _comment) {
+        comment = _comment;
+    }
+
+    public int getReserve() {
+        return reserve;
+    }
+
+    public void setReserve(int _reserve) {
+        reserve = _reserve;
+    }
+
+    public int getEventStepId() {
+        return eventStepId;
+    }
+
+    public void setEventStepId(int _eventStepId) {
+        eventStepId = _eventStepId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String _userName) {
+        userName = _userName;
+    }
+
+    public String getEmergencyUserName() {
+        return emergencyUserName;
+    }
+
+    public void setEmergencyUserName(String _emergencyUserName) {
+        emergencyUserName = _emergencyUserName;
+    }
+
+    public String getEventStepstr() {
+        return eventStepstr;
+    }
+
+    public void setEventStepstr(String _eventStepstr) {
+        eventStepstr = _eventStepstr;
+    }
+
+    public String getEventStepValue() {
+        return eventStepValue;
+    }
+
+    public void setEventStepValue(String _eventStepValue) {
+        eventStepValue = _eventStepValue;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String _contactName) {
+        contactName = _contactName;
+    }
+
+    public String getContactMobile() {
+        return contactMobile;
+    }
+
+    public void setContactMobile(String _contactMobile) {
+        contactMobile = _contactMobile;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String _grade) {
+        grade = _grade;
+    }
+
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(int _pageIndex) {
+        pageIndex = _pageIndex;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int _pageSize) {
+        pageSize = _pageSize;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String _year) {
+        year = _year;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String _count) {
+        count = _count;
+    }
+
+    public int getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(int _createUserId) {
+        createUserId = _createUserId;
+    }
+
+    public String getEmergencyCircuitStationEnd() {
+        return emergencyCircuitStationEnd;
+    }
+
+    public void setEmergencyCircuitStationEnd(String _emergencyCircuitStationEnd) {
+        emergencyCircuitStationEnd = _emergencyCircuitStationEnd;
+    }
+}

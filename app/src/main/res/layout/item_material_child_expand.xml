@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/emergency_detail_item_relative"
+    android:layout_height="200dp"
+    android:background="@color/color_ebeef4"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/material_left_text"
+                android:text="站点名"/>
+
+            <TextView
+                android:id="@+id/item_material_scope"
+                style="@style/material_right_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/material_left_text"
+                android:text="责任人"/>
+
+            <TextView
+                android:id="@+id/item_material_name"
+                style="@style/material_right_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/material_left_text"
+                android:text="联系电话"/>
+
+            <TextView
+                android:id="@+id/item_material_phone"
+                style="@style/material_right_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/material_left_text"
+                android:text="存放地点"/>
+
+            <TextView
+                android:id="@+id/item_material_location"
+                style="@style/material_right_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/material_left_text"
+                android:text="材料"/>
+
+            <TextView
+                android:id="@+id/item_material_material"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center_vertical|right"
+                android:maxLines="2"
+                android:textColor="@color/color_3e3a39"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

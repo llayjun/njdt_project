@@ -1,0 +1,27 @@
+package com.yuanye.njdt.constants;
+
+/**
+ * Created by Administrator on 2017/9/8 0008.
+ */
+
+public class ApiConfig {
+
+    public static final String IP = "http://112.124.96.207:18080";
+    public static final String URL = IP + "/appIndex/process/";
+    public static final String HEAD = "yuanyeActionName";
+
+    //登录
+    public static final String login_actionName = "login";
+    //修改密码
+    public static final String ediPass_actionName = "editPass";
+    //事件列表
+    public static final String eventList_actionName = "eventList";
+    //地铁线路和站台
+    public static final String numberStation_actionName = "numberStation";
+    //应急预案
+    public static final String yjya_actionName = "yjya";
+
+    //errorcode为1000，表示成功
+    public static final int SuccessCode = 1000;
+
+}

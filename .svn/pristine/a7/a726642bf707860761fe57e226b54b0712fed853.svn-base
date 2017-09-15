@@ -1,0 +1,42 @@
+package com.yuanye.njdt.presenter.service;
+
+import com.google.gson.Gson;
+import com.millet.androidlib.Net.OkHttpCallBack;
+import com.millet.androidlib.Net.OkHttpManager;
+import com.yuanye.njdt.constants.ApiConfig;
+import com.yuanye.njdt.data.entity.ReqResult;
+
+import java.io.IOException;
+import java.io.Serializable;
+
+import okhttp3.Request;
+import okhttp3.Response;
+
+/**
+ * Created by Administrator on 2017/9/8 0008.
+ */
+
+public class MyService implements IMyService {
+
+    @Override
+    public void reqServer(Serializable _serializable, String _headerValue, final IReqResultCallBack _iReqResultCallBack) {
+        OkHttpManager.getInstance().postAsyncJson(_serializable, ApiConfig.URL, ApiConfig.HEAD, _headerValue, new OkHttpCallBack() {
+            @Override
+            public void requestFailure(Request _request, IOException _io) {
+                _iReqResultCallBack.onResultFailure(_io.getMessage());
+            }
+
+            @Override
+            public void requestSuccess(Response _response) throws Exception {
+                String _result = _response.body().string();
+                ReqResult _reqResult = new Gson().fromJson(_result, ReqResult.class);
+                if (ApiConfig.SuccessCode == _reqResult.getCode()) {
+                    _iReqResultCallBack.onResultSuccess(_reqResult.getData(), _reqResult.getErrMsg());
+                } else {
+                    _iReqResultCallBack.onResultFailure(_reqResult.getErrMsg());
+                }
+            }
+        });
+    }
+
+}

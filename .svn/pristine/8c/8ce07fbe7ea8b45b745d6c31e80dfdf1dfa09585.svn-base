@@ -1,0 +1,92 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="div_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.2dp</item>
+        <item name="android:background">@color/color_a6b0bd</item>
+    </style>
+
+    <style name="emergency_item_name">
+        <item name="android:textColor">@color/color_3e3a39</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="emergency_detail_item_relative">
+        <item name="android:background">@color/color_ffffff</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="emergency_detail_item_relative_text_left">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/color_9e9e9f</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="emergency_detail_item_relative_text_right">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/color_3e3a39</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="material_left_text">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/color_9e9e9f</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="material_right_text">
+        <item name="android:layout_weight">4</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textColor">@color/color_3e3a39</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="publish_event_item_relative_text_left">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/color_9e9e9f</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="publish_event_item_relative_text_right">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:textColor">@color/color_3e3a39</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+</resources>

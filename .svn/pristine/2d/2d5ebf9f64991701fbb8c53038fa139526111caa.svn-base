@@ -1,0 +1,17 @@
+package com.yuanye.njdt;
+
+
+import com.millet.androidlib.Base.BaseApplication;
+
+/**
+ * Created by Administrator on 2017/9/7 0007.
+ */
+
+public class MyApplication extends BaseApplication {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+}
