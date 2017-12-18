@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/My_ANDROID.iml" filepath="$PROJECT_DIR$/My_ANDROID.iml" />
+      <module fileurl="file://C:\Users\Administrator\Desktop\njdt_project\My_ANDROID.iml" filepath="C:\Users\Administrator\Desktop\njdt_project\My_ANDROID.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidlib/androidlib.iml" filepath="$PROJECT_DIR$/androidlib/androidlib.iml" />
+      <module fileurl="file://C:\Users\Administrator\Desktop\njdt_project\androidlib\androidlib.iml" filepath="C:\Users\Administrator\Desktop\njdt_project\androidlib\androidlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Administrator\Desktop\njdt_project\app\app.iml" filepath="C:\Users\Administrator\Desktop\njdt_project\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/njdt_project.iml" filepath="$PROJECT_DIR$/njdt_project.iml" />
       <module fileurl="file://$PROJECT_DIR$/pulllibrary/pulllibrary.iml" filepath="$PROJECT_DIR$/pulllibrary/pulllibrary.iml" />
+      <module fileurl="file://C:\Users\Administrator\Desktop\njdt_project\pulllibrary\pulllibrary.iml" filepath="C:\Users\Administrator\Desktop\njdt_project\pulllibrary\pulllibrary.iml" />
     </modules>
   </component>
 </project>

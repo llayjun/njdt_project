@@ -57,7 +57,7 @@ public class ExampleFragment extends BaseModuleFragment implements TitleBarClick
 
     @Override
     protected void initViews(ViewGroup container, Bundle savedInstanceState, View _view) {
-        mTitleBar.setTitleBar(getString(R.string.exampleFragment_title), 0, R.mipmap.nav_btn_search, this);
+        mTitleBar.setTitleBar(getString(R.string.exampleFragment_title), 0, 0, this);
         mExamplePullListView.setMode(PullToRefreshBase.Mode.DISABLED);
         mExampleListAdapter = new ExampleListAdapter(getActivity());
         mExampleListAdapter.setPdfDownInfoListener(this);

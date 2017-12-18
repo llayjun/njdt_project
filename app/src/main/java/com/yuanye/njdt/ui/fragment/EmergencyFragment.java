@@ -38,8 +38,6 @@ public class EmergencyFragment extends BaseModuleFragment implements View.OnClic
     TextView mHeaderHtvSubtitle;
     @BindView(R.id.header_title)
     LinearLayout mHeaderTitle;
-    @BindView(R.id.head_right_image)
-    ImageView mHeadRightImage;
     @BindView(R.id.head_first_right_image)
     ImageView mHeadFirstRightImage;
     @BindView(R.id.emergency_pull_list_view)
@@ -68,8 +66,6 @@ public class EmergencyFragment extends BaseModuleFragment implements View.OnClic
         mHeaderHtvSubtitle.setText(getString(R.string.emergencyFragment_title));
         mHeadFirstRightImage.setImageResource(R.mipmap.nav_btn_edit);
         mHeadFirstRightImage.setOnClickListener(this);
-        mHeadRightImage.setImageResource(R.mipmap.nav_btn_search);
-        mHeadRightImage.setOnClickListener(this);
         mEmergencyPullListView.setMode(PullToRefreshBase.Mode.BOTH);
         mEmergencyListAdapter = new EmergencyListAdapter(getActivity());
         mEmergencyPullListView.setOnRefreshListener(this);
@@ -91,8 +87,6 @@ public class EmergencyFragment extends BaseModuleFragment implements View.OnClic
             ChangePassActivity.launch(getActivity());
         } else if (_id == R.id.head_first_right_image) {
             PublishEventActivity.launch(getActivity());
-        } else if (_id == R.id.head_right_image) {
-
         }
     }
 

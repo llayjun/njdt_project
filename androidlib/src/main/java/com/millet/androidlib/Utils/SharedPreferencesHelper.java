@@ -3,8 +3,6 @@ package com.millet.androidlib.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.millet.androidlib.Base.BaseApplication;
-
 import java.util.Map;
 
 /**
@@ -32,7 +30,7 @@ public class SharedPreferencesHelper {
 
     public static SharedPreferencesHelper getInstance(Context _context) {
         if (null == mInstance)
-            mInstance = new SharedPreferencesHelper(BaseApplication.getInstance());
+            mInstance = new SharedPreferencesHelper(_context);
         return mInstance;
     }
 

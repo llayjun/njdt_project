@@ -36,21 +36,11 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/head_right_image"
+            android:id="@+id/head_first_right_image"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:gravity="center"
-            android:paddingRight="3dp">
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/head_first_right_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/head_right_image"
             android:gravity="center"
             android:paddingRight="3dp">
         </ImageView>

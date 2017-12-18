@@ -57,7 +57,7 @@ public class PlanFragment extends BaseModuleFragment implements TitleBarClickLis
 
     @Override
     protected void initViews(ViewGroup container, Bundle savedInstanceState, View _view) {
-        mTitleBar.setTitleBar(getString(R.string.planFragment_title), 0, R.mipmap.nav_btn_search, this);
+        mTitleBar.setTitleBar(getString(R.string.planFragment_title), 0, 0, this);
         mPlanPullListView.setMode(PullToRefreshBase.Mode.DISABLED);
         mPlanListAdapter = new PlanListAdapter(getActivity());
         mPlanListAdapter.setPdfDownInfoListener(this);
